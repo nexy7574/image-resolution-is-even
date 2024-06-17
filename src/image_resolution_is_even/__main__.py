@@ -1,6 +1,7 @@
+import argparse
+
 from . import *
 from . import __all__
-import argparse
 
 
 def main():
