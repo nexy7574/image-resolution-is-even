@@ -10,6 +10,9 @@ permissions:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    environment:
+      name: TestPyPi
+      url: https://test.pypi.org/p/image-resolution-is-even
     steps:
       - uses: actions/checkout@v4
 
