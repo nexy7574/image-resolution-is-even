@@ -9,7 +9,7 @@
 Install with [pip](https://pypi.org/project/pip/):
 
 ```sh
-$ pip install --index-url https://test.pypi.org/simple/ image-resolution-is-even
+ pip install -i https://test.pypi.org/simple/ image-resolution-is-even
 ```
 
 ## Usage
