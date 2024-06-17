@@ -1,4 +1,4 @@
-# image-resolution-is-even
+# image-resolution-is-even ![Test package](https://github.com/nexy7574/image-resolution-is-even/actions/workflows/test.yml/badge.svg)
 
 > Check whether an image's resolution is even or not.
 
