@@ -1,0 +1,120 @@
+[build-system]
+requires = ["setuptools", "wheel", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+
+[project]
+name = "image-resolution-is-even"
+description = "(Satirical) A Python library to check if an image's resolution is even (or odd"
+readme = {file = "README.md", content-type = "text/markdown"}
+requires-python = ">=3.9,<3.13"
+license = { text = "MIT" }
+authors = [
+    {name = "Nexus", email = "pip@nexy7574.co.uk"}
+]
+dynamic = ["version", "dependencies"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Natural Language :: English",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Topic :: Communications",
+    "Topic :: Internet",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Software Development :: Libraries :: Application Frameworks",
+    "Topic :: Utilities"
+]
+
+[project.urls]
+Source = "https://github.com/nexy7574/image-resolution-is-even"
+Tracker = "https://github.com/nexy7574/image-resolution-is-even/issues"
+Funding = "https://ko-fi.com/nexy7574"
+Homepage = "https://nio-bot.dev"
+
+
+[project.optional-dependencies]
+dev = [
+    'mkdocs',
+    'mkdocs-material',
+    'black',
+    'mkdocs-autorefs',
+    'mkdocs-glightbox',
+    'mkdocstrings[python]',
+    'mkdocs-git-revision-date-localized-plugin',
+    'isort',
+    'build',
+    'pep440',
+    'pycodestyle',
+    'pytest',
+    'pytest-asyncio',
+    'pytest-benchmark',
+    'pytest-dependency',
+    'ruff',
+    'mike'
+]
+
+[project.scripts]
+niocli = "image_resolution_is_even.__main__:main"
+
+[tool.setuptools_scm]
+write_to = "src/image_resolution_is_even/__version__.py"
+
+[tool.setuptools.dynamic]
+dependencies = {file = "requirements.txt"}
+
+[tool.black]
+line-length = 120
+target-versions = ["py39", "py310", "py311", "py312"]
+include = 'src/niobot(/utils)?/.+\.py'
+
+[tool.isort]
+profile = "black"
+src_paths = ["src/niobot"]
+
+[tool.pytest.ini_options]
+testpaths = [
+    "src",
+]
+
+[tool.ruff]
+# Replacement for isort & black
+exclude = [".git"]
+target-version = "py39"
+line-length = 120
+indent-width = 4
+respect-gitignore = true
+
+[tool.ruff.lint]
+fixable = ["ALL"]
+ignore =   ["F403", "F405"]
+select = [
+    "E",     # pycodestyle
+    "F",     # Pyflakes
+    "I001",  # isort
+]
+
+[tool.ruff.format]
+# Like Black, use double quotes for strings.
+quote-style = "double"
+# Like Black, indent with spaces, rather than tabs.
+indent-style = "space"
+# Like Black, respect magic trailing commas.
+skip-magic-trailing-comma = false
+# Like Black, automatically detect the appropriate line ending.
+line-ending = "auto"
+
+
+[tool.ruff.lint.isort]
+case-sensitive = true
+combine-as-imports = true
+detect-same-package = true
+
+[tool.ruff.lint.pycodestyle]
+max-doc-length = 120
+max-line-length = 120
