@@ -1,15 +1,10 @@
-import typing
+from os import PathLike
+from pathlib import Path
+from typing import BinaryIO, Union as U
 
 from PIL import Image
-from typing import Union as U
 
-
-if typing.TYPE_CHECKING:
-    from pathlib import Path
-    from os import PathLike
-    from typing import BinaryIO
-
-    IMAGE_TYPE: U['PathLike', Path, str, BinaryIO, Image.Image] = U['PathLike', Path, str, BinaryIO, Image.Image]
+IMAGE_TYPE: U['PathLike', Path, str, BinaryIO, Image.Image] = U[PathLike, Path, str, BinaryIO, Image.Image]
 
 __all__ = (
     "image_width_is_even",
@@ -23,9 +18,13 @@ __all__ = (
     "odd_image_height_floor",
     "odd_image_width_floor",
     "even_image_resolution_ciel",
-    "event_image_resolution_floor",
+    "even_image_resolution_floor",
     "odd_image_resolution_ciel",
     "odd_image_resolution_floor",
+    "even_image_height_floor",
+    "odd_image_width_ciel",
+    "odd_image_height_ciel",
+    "even_image_width_floor",
     "IMAGE_TYPE"
 )
 
@@ -123,6 +122,18 @@ def even_image_height_ciel(image: "IMAGE_TYPE") -> int:
     return image.height if image_height_is_even(image) else image.height + 1
 
 
+def even_image_height_floor(image: "IMAGE_TYPE") -> int:
+    """
+    Returns the next even number less than or equal to the image height.
+
+    :param image: The image object to check.
+    :return: int - The next even number less than or equal to the image height.
+    :rtype: int
+    """
+    image = __load_image(image)
+    return image.height if image_height_is_even(image) else image.height - 1
+
+
 def even_image_width_ciel(image: "IMAGE_TYPE") -> int:
     """
     Returns the next even number greater than or equal to the image width.
@@ -133,6 +144,18 @@ def even_image_width_ciel(image: "IMAGE_TYPE") -> int:
     """
     image = __load_image(image)
     return image.width if image_width_is_even(image) else image.width + 1
+
+
+def even_image_width_floor(image: "IMAGE_TYPE") -> int:
+    """
+    Returns the next even number less than or equal to the image width.
+
+    :param image: The image object to check.
+    :return: int - The next even number less than or equal to the image width.
+    :rtype: int
+    """
+    image = __load_image(image)
+    return image.width if image_width_is_even(image) else image.width - 1
 
 
 def odd_image_height_floor(image: "IMAGE_TYPE") -> int:
@@ -147,6 +170,18 @@ def odd_image_height_floor(image: "IMAGE_TYPE") -> int:
     return image.height if image_height_is_odd(image) else image.height - 1
 
 
+def odd_image_width_ciel(image: "IMAGE_TYPE") -> int:
+    """
+    Returns the next odd number greater than or equal to the image width.
+
+    :param image: The image object to check.
+    :return: int - The next odd number greater than or equal to the image width.
+    :rtype: int
+    """
+    image = __load_image(image)
+    return image.width if image_width_is_odd(image) else image.width + 1
+
+
 def odd_image_width_floor(image: "IMAGE_TYPE") -> int:
     """
     Returns the next odd number less than or equal to the image width.
@@ -157,6 +192,18 @@ def odd_image_width_floor(image: "IMAGE_TYPE") -> int:
     """
     image = __load_image(image)
     return image.width if image_width_is_odd(image) else image.width - 1
+
+
+def odd_image_height_ciel(image: "IMAGE_TYPE") -> int:
+    """
+    Returns the next odd number greater than or equal to the image height.
+
+    :param image: The image object to check.
+    :return: int - The next odd number greater than or equal to the image height.
+    :rtype: int
+    """
+    image = __load_image(image)
+    return image.height if image_height_is_odd(image) else image.height + 1
 
 
 def even_image_resolution_ciel(image: "IMAGE_TYPE") -> tuple[int, int]:
@@ -171,7 +218,7 @@ def even_image_resolution_ciel(image: "IMAGE_TYPE") -> tuple[int, int]:
     return even_image_width_ciel(image), even_image_height_ciel(image)
 
 
-def event_image_resolution_floor(image: "IMAGE_TYPE") -> tuple[int, int]:
+def even_image_resolution_floor(image: "IMAGE_TYPE") -> tuple[int, int]:
     """
     Returns the next even number less than or equal to the image resolution.
 
@@ -180,7 +227,7 @@ def event_image_resolution_floor(image: "IMAGE_TYPE") -> tuple[int, int]:
     :rtype: tuple[int, int]
     """
     image = __load_image(image)
-    return even_image_width_ciel(image), even_image_height_ciel(image)
+    return even_image_width_floor(image), even_image_height_floor(image)
 
 
 def odd_image_resolution_ciel(image: "IMAGE_TYPE") -> tuple[int, int]:
@@ -192,7 +239,7 @@ def odd_image_resolution_ciel(image: "IMAGE_TYPE") -> tuple[int, int]:
     :rtype: tuple[int, int]
     """
     image = __load_image(image)
-    return odd_image_width_floor(image), odd_image_height_floor(image)
+    return odd_image_width_ciel(image), odd_image_height_ciel(image)
 
 
 def odd_image_resolution_floor(image: "IMAGE_TYPE") -> tuple[int, int]:

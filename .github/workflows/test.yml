@@ -1,8 +1,6 @@
 name: Upload Python Package
 
-on:
-  release:
-    types: [published]
+on: push
 
 permissions:
   contents: read
@@ -24,10 +22,5 @@ jobs:
       - name: Test package
         run: python -m pytest
 
-      - name: Build package
-        run: python -m build
-
-      - name: Publish package
-        uses: pypa/gh-action-pypi-publish@release/v1.8
-        with:
-          repository-url: https://test.pypi.org/legacy/
+      - name: Lint package
+        run: ruff check

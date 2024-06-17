@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "image-resolution-is-even"
-description = "(Satirical) A Python library to check if an image's resolution is even (or odd"
+description = "(Satirical) A Python library to check if an image's resolution is even (or odd)"
 readme = {file = "README.md", content-type = "text/markdown"}
 requires-python = ">=3.9,<3.13"
 license = { text = "MIT" }
