@@ -60,7 +60,7 @@ dev = [
 ]
 
 [project.scripts]
-niocli = "image_resolution_is_even.__main__:main"
+image-resolution-is-even     = "image_resolution_is_even.__main__:main"
 
 [tool.setuptools_scm]
 write_to = "src/image_resolution_is_even/__version__.py"
